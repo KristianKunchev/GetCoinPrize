@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crypto Price Checker</title>
+  <link rel="stylesheet" href="/styles/main.css"> <!-- Optional CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Check Cryptocurrency Price</h1>
+  <form action="/getCoin" method="POST">
+    <input type="text" name="coin" placeholder="Enter coin ID (e.g., bitcoin)" required>
+    <button type="submit">Get Price</button>
+  </form>
+
+  <% if (locals.error) { %>
+      <div class="error">❌ <%= error %></div>
+    <% } else if (locals.coinName && locals.price) { %>
+      <div class="result">✅ <strong><%= coinName.charAt(0).toUpperCase() + coinName.slice(1) %></strong> price: $<%= price.toLocaleString() %> USD</div>
+    <% } %>
+</body>
+</html>
